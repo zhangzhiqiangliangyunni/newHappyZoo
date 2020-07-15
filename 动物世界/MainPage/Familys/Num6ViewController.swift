@@ -270,13 +270,13 @@ extension Num6ViewController: UICollectionViewDelegate, UICollectionViewDataSour
                     
                     //拍照获取
                     self.alertView.takePicture { [weak self] in
-                        self?.alertView.removeFromSuperview()
+                        self?.alertView.superview?.removeFromSuperview()
                         self?.takePictureAction()
                     }
                     
                     //相册获取
                     self.alertView.selectPicture { [weak self] in
-                        self?.alertView.removeFromSuperview()
+                        self?.alertView.superview?.removeFromSuperview()
                         self?.selectPictureAction()
                     }
                 }
