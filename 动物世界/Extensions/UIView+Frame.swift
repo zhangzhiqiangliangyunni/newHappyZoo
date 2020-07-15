@@ -193,8 +193,8 @@ extension UIView {
                     snap?.center = CGPoint(x: v.center.x, y: v.frame.origin.y)
                     snap?.layer.anchorPoint = CGPoint(x: 0.5, y: 0)
                     cover.addSubview(snap!)
-                    v.isHidden = true
-                    isUserInteractionEnabled = false
+//                    v.isHidden = true
+//                    isUserInteractionEnabled = false
                     
                     UIView.animate(withDuration: 0.2, animations: {
                         snap?.transform = CGAffineTransform.init(scaleX: 0, y: 0)

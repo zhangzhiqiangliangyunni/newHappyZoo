@@ -58,6 +58,9 @@
                         <constraint firstAttribute="height" constant="30" id="w6m-tM-ljJ"/>
                     </constraints>
                     <state key="normal" backgroundImage="DriverDispatchMapClose"/>
+                    <connections>
+                        <action selector="exitBtnAction:" destination="b9e-Vf-kVd" eventType="touchUpInside" id="LNF-R8-Sii"/>
+                    </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" red="0.72480343433682892" green="0.7693973183631897" blue="0.738659592626557" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>

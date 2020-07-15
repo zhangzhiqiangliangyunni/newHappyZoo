@@ -37,4 +37,8 @@ class AlertSelectView: UIView {
         }
     }
     
+    @IBAction func exitBtnAction(_ sender: Any) {
+        self.superview?.removeFromSuperview()
+    }
+    
 }

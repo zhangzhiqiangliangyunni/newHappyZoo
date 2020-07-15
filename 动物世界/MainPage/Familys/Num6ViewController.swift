@@ -257,7 +257,7 @@ extension Num6ViewController: UICollectionViewDelegate, UICollectionViewDataSour
                     UIView.animate(withDuration: 0.5, animations: {
                         self.alertView.frame = CGRect(x: centerX1, y: centerY1, width: 0, height:0)
                     }, completion: { (_) in
-                        self.alertView.removeFromSuperview()
+                        self.alertView.superview?.removeFromSuperview()
                     })
                 }
                 else
@@ -265,6 +265,7 @@ extension Num6ViewController: UICollectionViewDelegate, UICollectionViewDataSour
             
                     UIView.animate(withDuration: 0.5, animations: {
                         self.alertView.frame = CGRect(x: centerX1, y: centerY1, width: 250, height: 200)
+                        self.alertView.isHidden = false
                         self.view.addSubViewWithCover(self.alertView, blur: true)
                     })
                     
