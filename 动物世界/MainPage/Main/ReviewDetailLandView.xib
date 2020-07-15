@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ReviewDetailLandView" customModule="动物世界" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="606" height="371"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请您对我们的应用留下宝贵的意见与建议" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ol7-mL-or1">
+                    <rect key="frame" x="0.0" y="10" width="606" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="XkG-Ig-Wmc"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BtY-Sk-qFD" customClass="EditTextView" customModule="动物世界" customModuleProvider="target">
+                    <rect key="frame" x="30" y="80" width="546" height="211"/>
+                    <color key="backgroundColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.97647058823529409" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.CornerRadius">
+                            <integer key="value" value="16"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TNb-bo-SO7">
+                    <rect key="frame" x="30" y="311" width="546" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="Xd4-IS-s9R"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
+                    <inset key="titleEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="20" maxY="0.0"/>
+                    <state key="normal" title="提交" image="HelpDisableSubmitSupportCase">
+                        <color key="titleColor" red="0.4823529411764706" green="0.47843137254901957" blue="0.47843137254901957" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    </state>
+                    <connections>
+                        <action selector="submitAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="V2c-5g-f0T"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="55s-et-rsd">
+                    <rect key="frame" x="574" y="2" width="30" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="0LW-mh-DL1"/>
+                        <constraint firstAttribute="width" constant="30" id="Pvl-Eh-Bt9"/>
+                    </constraints>
+                    <state key="normal" title="Button" image="HelpDeletePic"/>
+                    <connections>
+                        <action selector="exitAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="N13-jI-XW6"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="0.49803921568627452" green="0.72156862745098038" blue="0.64313725490196072" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="TNb-bo-SO7" secondAttribute="trailing" constant="30" id="8or-Zn-yRp"/>
+                <constraint firstItem="Ol7-mL-or1" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Feg-BX-IoI"/>
+                <constraint firstItem="TNb-bo-SO7" firstAttribute="trailing" secondItem="BtY-Sk-qFD" secondAttribute="trailing" id="LsJ-EA-VP3"/>
+                <constraint firstItem="TNb-bo-SO7" firstAttribute="leading" secondItem="BtY-Sk-qFD" secondAttribute="leading" id="dSh-So-eOs"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Ol7-mL-or1" secondAttribute="trailing" id="gvl-VW-9TM"/>
+                <constraint firstItem="TNb-bo-SO7" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="30" id="gwa-Mu-1SO"/>
+                <constraint firstItem="TNb-bo-SO7" firstAttribute="top" secondItem="BtY-Sk-qFD" secondAttribute="bottom" constant="20" id="kVi-YW-WVI"/>
+                <constraint firstAttribute="bottom" secondItem="TNb-bo-SO7" secondAttribute="bottom" constant="10" id="mIP-mz-WAr"/>
+                <constraint firstItem="BtY-Sk-qFD" firstAttribute="top" secondItem="Ol7-mL-or1" secondAttribute="bottom" constant="20" id="ufW-8b-SOu"/>
+                <constraint firstAttribute="trailing" secondItem="55s-et-rsd" secondAttribute="trailing" constant="2" id="uh0-93-r1k"/>
+                <constraint firstItem="Ol7-mL-or1" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="up5-f3-qcn"/>
+                <constraint firstItem="55s-et-rsd" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="2" id="vBF-IN-Dwp"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="noteView" destination="BtY-Sk-qFD" id="JYE-WR-QpL"/>
+                <outlet property="submit" destination="TNb-bo-SO7" id="jwp-Wl-Hqd"/>
+            </connections>
+            <point key="canvasLocation" x="10.144927536231885" y="-58.59375"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="HelpDeletePic" width="40" height="40"/>
+        <image name="HelpDisableSubmitSupportCase" width="17" height="25"/>
+    </resources>
+</document>

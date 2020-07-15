@@ -1,0 +1,6 @@
+module Chirp {
+  umbrella header "Chirp-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="ipad9_7" orientation="landscape" layout="fullscreen" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CarsViewController" customModule="动物世界" customModuleProvider="target">
+            <connections>
+                <outlet property="scrollView" destination="HaK-Ev-G9D" id="TYb-gt-Pbn"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HaK-Ev-G9D">
+                    <rect key="frame" x="347" y="307" width="240" height="128"/>
+                    <color key="backgroundColor" red="0.0" green="0.60284429790000005" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <viewLayoutGuide key="contentLayoutGuide" id="qv6-o6-jah"/>
+                    <viewLayoutGuide key="frameLayoutGuide" id="gnX-oI-jwd"/>
+                </scrollView>
+            </subviews>
+            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+            <constraints>
+                <constraint firstItem="HaK-Ev-G9D" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="EcB-uf-Swz"/>
+                <constraint firstAttribute="bottom" secondItem="HaK-Ev-G9D" secondAttribute="bottom" id="LYb-4Z-5dI"/>
+                <constraint firstAttribute="trailing" secondItem="HaK-Ev-G9D" secondAttribute="trailing" id="T4b-4V-CKt"/>
+                <constraint firstItem="HaK-Ev-G9D" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Vzm-GE-YyJ"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="139" y="90"/>
+        </view>
+    </objects>
+</document>

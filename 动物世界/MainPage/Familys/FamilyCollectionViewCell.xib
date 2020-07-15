@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="FamilyCollectionViewCell" customModule="动物世界" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="361" height="347"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="361" height="347"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bVq-ql-xyK">
+                        <rect key="frame" x="0.0" y="0.0" width="361" height="347"/>
+                        <subviews>
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jhg-iH-h2Q">
+                                <rect key="frame" x="5" y="10" width="351" height="297"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.CornerRadius">
+                                        <integer key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="clickImgBtnAction:" destination="gTV-IL-0wX" eventType="touchUpInside" id="NDR-cC-rWM"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BNz-sc-d9q" customClass="EditItemView" customModule="动物世界" customModuleProvider="target">
+                                <rect key="frame" x="5" y="312" width="351" height="30"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="LPa-HH-HrJ"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="hasTailImage" value="NO"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="hasHeaderImage" value="NO"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="snA-sL-hph">
+                                <rect key="frame" x="319" y="2" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="1EI-8f-vaK"/>
+                                    <constraint firstAttribute="height" constant="40" id="f6y-VW-L2f"/>
+                                </constraints>
+                                <state key="normal" backgroundImage="InternetSelfTestred"/>
+                                <connections>
+                                    <action selector="clearAction:" destination="gTV-IL-0wX" eventType="touchUpInside" id="cB2-ZY-SCm"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="BNz-sc-d9q" secondAttribute="bottom" constant="5" id="2Ig-D2-5Pe"/>
+                            <constraint firstItem="BNz-sc-d9q" firstAttribute="top" secondItem="jhg-iH-h2Q" secondAttribute="bottom" constant="5" id="9do-mA-N4R"/>
+                            <constraint firstAttribute="trailing" secondItem="BNz-sc-d9q" secondAttribute="trailing" constant="5" id="BJc-FO-ux1"/>
+                            <constraint firstItem="jhg-iH-h2Q" firstAttribute="leading" secondItem="bVq-ql-xyK" secondAttribute="leading" constant="5" id="Kmz-ot-bBg"/>
+                            <constraint firstAttribute="trailing" secondItem="snA-sL-hph" secondAttribute="trailing" constant="2" id="QZg-7R-UHn"/>
+                            <constraint firstItem="snA-sL-hph" firstAttribute="top" secondItem="bVq-ql-xyK" secondAttribute="top" constant="2" id="RD6-8R-wPe"/>
+                            <constraint firstAttribute="trailing" secondItem="jhg-iH-h2Q" secondAttribute="trailing" constant="5" id="SZR-It-UlS"/>
+                            <constraint firstItem="BNz-sc-d9q" firstAttribute="leading" secondItem="bVq-ql-xyK" secondAttribute="leading" constant="5" id="fVa-BP-J8C"/>
+                            <constraint firstItem="jhg-iH-h2Q" firstAttribute="top" secondItem="bVq-ql-xyK" secondAttribute="top" constant="10" id="zSC-dv-DUD"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.CornerRadius">
+                                <integer key="value" value="20"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                </subviews>
+            </view>
+            <color key="backgroundColor" red="0.0" green="0.64846754070000001" blue="0.31162753700000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="bVq-ql-xyK" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="GTc-HA-eNB"/>
+                <constraint firstItem="bVq-ql-xyK" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="HVs-QG-GPK"/>
+                <constraint firstAttribute="bottom" secondItem="bVq-ql-xyK" secondAttribute="bottom" id="NDS-Cz-Hqe"/>
+                <constraint firstAttribute="trailing" secondItem="bVq-ql-xyK" secondAttribute="trailing" id="vJv-Au-4m6"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <size key="customSize" width="361" height="347"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="number" keyPath="layer.CornerRadius">
+                    <integer key="value" value="20"/>
+                </userDefinedRuntimeAttribute>
+            </userDefinedRuntimeAttributes>
+            <connections>
+                <outlet property="EditTextField" destination="BNz-sc-d9q" id="mju-7m-n2Z"/>
+                <outlet property="clearBtn" destination="snA-sL-hph" id="1bo-g4-wHF"/>
+                <outlet property="displayImage" destination="jhg-iH-h2Q" id="0ev-DS-166"/>
+            </connections>
+            <point key="canvasLocation" x="25.362318840579711" y="90.736607142857139"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="InternetSelfTestred" width="30" height="30"/>
+    </resources>
+</document>

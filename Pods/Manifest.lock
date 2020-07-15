@@ -1,0 +1,95 @@
+PODS:
+  - Alamofire (5.2.1)
+  - Chirp (1.2.0)
+  - GRDB.swift (4.14.0):
+    - GRDB.swift/standard (= 4.14.0)
+  - GRDB.swift/standard (4.14.0)
+  - Kingfisher (5.14.1):
+    - Kingfisher/Core (= 5.14.1)
+  - Kingfisher/Core (5.14.1)
+  - LeanCloud (17.5.7):
+    - LeanCloud/RTM (= 17.5.7)
+  - LeanCloud/Foundation (17.5.7):
+    - Alamofire (~> 5.0)
+  - LeanCloud/RTM (17.5.7):
+    - GRDB.swift (~> 4.9)
+    - LeanCloud/Foundation (= 17.5.7)
+    - Starscream (~> 3.1)
+    - SwiftProtobuf (~> 1.8)
+  - MJRefresh (3.1.17)
+  - Palau (1.0.4)
+  - PromiseKit (6.13.1):
+    - PromiseKit/CorePromise (= 6.13.1)
+    - PromiseKit/Foundation (= 6.13.1)
+    - PromiseKit/UIKit (= 6.13.1)
+  - PromiseKit/CorePromise (6.13.1)
+  - PromiseKit/Foundation (6.13.1):
+    - PromiseKit/CorePromise
+  - PromiseKit/UIKit (6.13.1):
+    - PromiseKit/CorePromise
+  - RxCocoa (5.1.1):
+    - RxRelay (~> 5)
+    - RxSwift (~> 5)
+  - RxRelay (5.1.1):
+    - RxSwift (~> 5)
+  - RxSwift (5.1.1)
+  - SnapKit (5.0.1)
+  - Starscream (3.1.1)
+  - SwiftProtobuf (1.10.2)
+
+DEPENDENCIES:
+  - Chirp
+  - GRDB.swift
+  - Kingfisher
+  - LeanCloud
+  - MJRefresh (~> 3.1.5)
+  - Palau (from `https://github.com/symentis/Palau`)
+  - PromiseKit
+  - RxCocoa
+  - RxSwift
+  - SnapKit
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - Alamofire
+    - Chirp
+    - GRDB.swift
+    - Kingfisher
+    - LeanCloud
+    - MJRefresh
+    - PromiseKit
+    - RxCocoa
+    - RxRelay
+    - RxSwift
+    - SnapKit
+    - Starscream
+    - SwiftProtobuf
+
+EXTERNAL SOURCES:
+  Palau:
+    :git: https://github.com/symentis/Palau
+
+CHECKOUT OPTIONS:
+  Palau:
+    :commit: f4b50ef3a46e71886bd8980b1123069c4af24d8e
+    :git: https://github.com/symentis/Palau
+
+SPEC CHECKSUMS:
+  Alamofire: e911732990610fe89af59ac0077f923d72dc3dfd
+  Chirp: 75bcc474bb825bdcfeb4a32533c278076966ae2b
+  GRDB.swift: 8cc3ab7c8b8b4ac1761deb8dca4b51c1c9d429f8
+  Kingfisher: 8050bc6f7f68cbf3908bd04df7ccbac188f6d6d6
+  LeanCloud: 23e3db9769eaf018e275008734b3b2846c154f77
+  MJRefresh: ee5b68f639775462faba4db0fd243baf4d42c2cf
+  Palau: be8ad814e9e421ec0223cfe972d841ed348b1b0a
+  PromiseKit: 28fda91c973cc377875d8c0ea4f973013c05b6db
+  RxCocoa: 32065309a38d29b5b0db858819b5bf9ef038b601
+  RxRelay: d77f7d771495f43c556cbc43eebd1bb54d01e8e9
+  RxSwift: 81470a2074fa8780320ea5fe4102807cb7118178
+  SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
+  Starscream: 4bb2f9942274833f7b4d296a55504dcfc7edb7b0
+  SwiftProtobuf: bec1ae7d686ff73dd09d79866154f4970b891410
+
+PODFILE CHECKSUM: d42c3af195c9a7b49f24865e021b1b668c26e2f2
+
+COCOAPODS: 1.8.4

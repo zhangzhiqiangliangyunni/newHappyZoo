@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="ipad9_7" orientation="landscape" layout="fullscreen" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="OthersViewController" customModule="动物世界" customModuleProvider="target">
+            <connections>
+                <outlet property="scrollView" destination="qNU-9j-crQ" id="hCd-dP-QER"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qNU-9j-crQ">
+                    <rect key="frame" x="241" y="275" width="240" height="128"/>
+                    <color key="backgroundColor" red="0.0" green="0.60284429790000005" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <viewLayoutGuide key="contentLayoutGuide" id="HBv-nu-w1N"/>
+                    <viewLayoutGuide key="frameLayoutGuide" id="dd3-FC-xTI"/>
+                </scrollView>
+            </subviews>
+            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+            <constraints>
+                <constraint firstItem="qNU-9j-crQ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Bh4-fF-sO3"/>
+                <constraint firstAttribute="trailing" secondItem="qNU-9j-crQ" secondAttribute="trailing" id="GW8-kY-cwu"/>
+                <constraint firstAttribute="bottom" secondItem="qNU-9j-crQ" secondAttribute="bottom" id="a6e-FI-bk4"/>
+                <constraint firstItem="qNU-9j-crQ" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="tq0-NH-jpd"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="139" y="90"/>
+        </view>
+    </objects>
+</document>

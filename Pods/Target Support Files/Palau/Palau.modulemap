@@ -1,0 +1,6 @@
+module Palau {
+  umbrella header "Palau-umbrella.h"
+
+  export *
+  module * { export * }
+}

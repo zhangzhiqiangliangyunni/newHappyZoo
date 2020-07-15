@@ -1,0 +1,6 @@
+module LeanCloud {
+  umbrella header "LeanCloud-umbrella.h"
+
+  export *
+  module * { export * }
+}
