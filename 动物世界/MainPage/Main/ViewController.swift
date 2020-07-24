@@ -149,32 +149,32 @@ class ViewController: UIViewController {
     @objc func tap1Action(){
         AreaIcon1.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
         Sound.play(type: .click)
+        
         UIView.animate(withDuration: 0.3,
                        delay: 0,
                        usingSpringWithDamping: CGFloat(0.20),
                        initialSpringVelocity: CGFloat(6.0),
                        options: UIView.AnimationOptions.allowUserInteraction,
-                       animations: {
+                       animations: {[weak self] in
+                        guard let `self` = self else { return }
                         self.AreaIcon1.transform = CGAffineTransform.identity
         },
-                       completion: { Void in()
-                        
+                       completion: {[weak self] Void in()
+                        guard let `self` = self else { return }
                         let num1VC = Num1ViewController()
                         num1VC.view.frame = self.view.bounds
                         num1VC.view.frame.origin.x = self.view.bounds.width
                         let window = UIApplication.shared.windows[0]
                         window.addSubview(num1VC.view)
                         
+                        let appDelegate = UIApplication.shared.delegate as? AppDelegate
+                        appDelegate?.num1VC = num1VC
+
                         UIView.animate(withDuration: 0.5) {
                             num1VC.view.frame.origin.x = 0
                         }
-                        
-                        num1VC.closeNum1 { [weak self] in
-                            num1VC.view.frame.origin.x = self?.view.bounds.width ?? 0
-                        }
-                        
-        }
-        )
+
+        })
         
     }
     
@@ -196,6 +196,9 @@ class ViewController: UIViewController {
                         num2VC.view.frame.origin.x = self.view.bounds.width
                         let window = UIApplication.shared.windows[0]
                         window.addSubview(num2VC.view)
+                        
+                        let appDelegate = UIApplication.shared.delegate as? AppDelegate
+                        appDelegate?.num2VC = num2VC
 
                         UIView.animate(withDuration: 0.5) {
                             num2VC.view.frame.origin.x = 0
@@ -227,6 +230,9 @@ class ViewController: UIViewController {
                         num3VC.view.frame.origin.x = self.view.bounds.width
                         let window = UIApplication.shared.windows[0]
                         window.addSubview(num3VC.view)
+                        
+                        let appDelegate = UIApplication.shared.delegate as? AppDelegate
+                        appDelegate?.num3VC = num3VC
 
                         UIView.animate(withDuration: 0.5) {
                             num3VC.view.frame.origin.x = 0
@@ -259,6 +265,9 @@ class ViewController: UIViewController {
                         num4VC.view.frame.origin.x = self.view.bounds.width
                         let window = UIApplication.shared.windows[0]
                         window.addSubview(num4VC.view)
+                        
+                        let appDelegate = UIApplication.shared.delegate as? AppDelegate
+                        appDelegate?.num4VC = num4VC
 
                         UIView.animate(withDuration: 0.5) {
                             num4VC.view.frame.origin.x = 0
@@ -290,6 +299,9 @@ class ViewController: UIViewController {
                         num5VC.view.frame.origin.x = self.view.bounds.width
                         let window = UIApplication.shared.windows[0]
                         window.addSubview(num5VC.view)
+                        
+                        let appDelegate = UIApplication.shared.delegate as? AppDelegate
+                        appDelegate?.num5VC = num5VC
 
                         UIView.animate(withDuration: 0.5) {
                             num5VC.view.frame.origin.x = 0
@@ -312,8 +324,8 @@ class ViewController: UIViewController {
                        usingSpringWithDamping: CGFloat(0.20),
                        initialSpringVelocity: CGFloat(6.0),
                        options: UIView.AnimationOptions.allowUserInteraction,
-                       animations: {
-                        self.AreaIcon6.transform = CGAffineTransform.identity
+                       animations: { [weak self] in
+                        self?.AreaIcon6.transform = CGAffineTransform.identity
         },
                        completion: { Void in()
 
@@ -322,16 +334,14 @@ class ViewController: UIViewController {
                         num6VC.view.frame.origin.x = self.view.bounds.width
                         let window = UIApplication.shared.windows[0]
                         window.addSubview(num6VC.view)
+                        
+                        let appDelegate = UIApplication.shared.delegate as? AppDelegate
+                        appDelegate?.num6VC = num6VC
 
                         UIView.animate(withDuration: 0.5) {
                             num6VC.view.frame.origin.x = 0
                         }
-
-                        num6VC.closeNum6 { [weak self] in
-                            num6VC.view.frame.origin.x = self?.view.bounds.width ?? 0
-                        }
-        }
-        )
+        })
 
     }
   

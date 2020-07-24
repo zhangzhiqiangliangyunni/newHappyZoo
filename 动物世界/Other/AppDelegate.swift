@@ -11,6 +11,13 @@ import LeanCloud
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    
+    var num1VC: Num1ViewController?
+    var num2VC: Num2ViewController?
+    var num3VC: Num3ViewController?
+    var num4VC: Num4ViewController?
+    var num5VC: Num5ViewController?
+    var num6VC: Num6ViewController?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.

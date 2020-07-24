@@ -141,6 +141,7 @@ class Num5ViewController: UIViewController {
              self.closeNum5VCBlock?()
          }, completion: { _ in
              self.view.removeFromSuperview()
+            (UIApplication.shared.delegate as? AppDelegate)?.num5VC = nil
          })
      }
 }

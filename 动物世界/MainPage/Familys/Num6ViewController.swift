@@ -22,6 +22,8 @@ struct ImageSource {
     }
 }
 
+
+
 class Num6ViewController: UIViewController {
     
     @IBOutlet weak var navigaView: UIView!
@@ -30,6 +32,7 @@ class Num6ViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     
     fileprivate var isShaking: Bool = false
+    var index: Int = 0
     
     var collectionOldY: CGFloat = 0
     
@@ -38,7 +41,7 @@ class Num6ViewController: UIViewController {
         closeNum6VCBlock = block
     }
     
-    var familyImgsSource = mySingleton.shareInstance.dataSourceImgsSingleton {
+    var familyImgsSource:[ImageSource] = [] {
         didSet{
             collectionView.reloadData()
         }
@@ -58,9 +61,18 @@ class Num6ViewController: UIViewController {
         return $0
     }(UIImagePickerController())
     
+    deinit {
+        print("我移除了  移除了  移除了----------------")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
     }
     
     func setupUI(){
@@ -74,26 +86,44 @@ class Num6ViewController: UIViewController {
         collectionView.register(UINib(nibName: "addNewItemCell" ,bundle: nil), forCellWithReuseIdentifier: "addNewItemCell")
         collectionOldY = self.collectionView.frame.origin.y
         
-        familyImgsSource = mySingleton.shareInstance.dataSourceImgsSingleton
+        getImagesFromDocument()
         
-        //查询数据库
+    }
+    
+    func getImagesFromDocument() {
         
-//        DispatchQueue.global().async {
-//            let allImagesStr = DBQueue.inDatabase { db in
-//                try! Data.fetchAll(db, sql: "SELECT Images FROM axFamilyImages")
-//            }
-//            print(allImagesStr)
-//        }
+        if UserDefaults.standard.integer(forKey: "imageCount") > 0 {
+            var newImageSource: [ImageSource] = []
+            let fileManager = FileManager.default
+            let rootPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first! as NSString
+            
+            for i in 0..<UserDefaults.standard.integer(forKey: "imageCount"){
+                
+                let filePath = "\(rootPath)/pickedImage\(i).jpg"
+                
+                if fileManager.fileExists(atPath: filePath) {
+                    if let imageData = fileManager.contents(atPath: filePath) {
+                        //data转String
+                        if let imageImage = UIImage.init(data: imageData) {
+                            newImageSource.append(.init(img: imageImage, title: "张张"))
+                        }
+                    }
+                }
+            }
+            
+            familyImgsSource = newImageSource
+        }
     }
     
     @IBAction func backAction(_ sender: Any) {
         
         EditItemView.hideKeyboard()
         
-        UIView.animate(withDuration: 0.5, animations: {
-            self.closeNum6VCBlock?()
-        }, completion: { _ in
-            self.view.removeFromSuperview()
+        UIView.animate(withDuration: 0.5, animations: { [weak self] in
+            self?.view.frame.origin.x = self?.view.bounds.width ?? 0
+            }, completion: { _ in
+                self.view.removeFromSuperview()
+                (UIApplication.shared.delegate as? AppDelegate)?.num6VC = nil
         })
     }
     
@@ -102,7 +132,7 @@ class Num6ViewController: UIViewController {
         LBXPermissions.authorizeCameraWith { [weak self] (success) in
             guard let `self` = self else { return }
             if !success {
-               print("拍照不成功--------拍照不成功")
+                print("拍照不成功--------拍照不成功")
             }
             else {
                 self.imagePickerController.sourceType = .camera
@@ -174,27 +204,32 @@ extension Num6ViewController: UICollectionViewDelegate, UICollectionViewDataSour
                 }
                 collectionView.reloadData()
                 mySingleton.shareInstance.dataSourceImgsSingleton = self.familyImgsSource
+                
+                UserDefaults.standard.set(mySingleton.shareInstance.dataSourceImgsSingleton.count, forKey: "imageCount")
+                UserDefaults.standard.synchronize()
             }
             
             //familyCell中的EditItemView开始编辑的时候
-            familyCell.editTextField {
+            familyCell.editTextField { [weak self] in
                 //collectionView上半段的cell
                 if indexPath.item % (3*2) / 3 == 0 {
                     UIView.animate(withDuration: TimeInterval(0.3), delay: 0, options: UIView.AnimationOptions.curveLinear, animations: {
-                        self.collectionView.frame.origin.y = self.collectionView.frame.origin.y - 20
+                        self?.collectionView.frame.origin.y = (self?.collectionView.frame.origin.y ?? 0.0) - 20
                     })
                 } else { //collectionView下半段的cell
                     UIView.animate(withDuration: TimeInterval(0.3), delay: 0, options: UIView.AnimationOptions.curveLinear, animations: {
-                        self.collectionView.frame.origin.y = self.collectionView.frame.origin.y - 40 - familyCell.contentView.frame.height
+                        self?.collectionView.frame.origin.y = (self?.collectionView.frame.origin.y ?? 0) - 40 - familyCell.contentView.frame.height
                     })
                 }
             }
             
             //familyCell中的EditItemView编辑完成的时候
-            familyCell.endEditTextField {
-                UIView.animate(withDuration: TimeInterval(0.3), delay: 0, options: UIView.AnimationOptions.curveLinear, animations: {
-                    self.collectionView.frame.origin.y = self.collectionOldY
-                })
+            familyCell.endEditTextField { [weak self] in
+                if let collectionOldY = self?.collectionOldY {
+                    UIView.animate(withDuration: TimeInterval(0.3), delay: 0, options: UIView.AnimationOptions.curveLinear, animations: {
+                        self?.collectionView.frame.origin.y = collectionOldY
+                    })
+                }
             }
             
             familyCell.longPress = { [weak self] (inx) in
@@ -216,6 +251,8 @@ extension Num6ViewController: UICollectionViewDelegate, UICollectionViewDataSour
                     self?.familyImgsSource.remove(at:inx)
                     collectionView.deleteItems(at: [IndexPath(row: inx, section: 0)])
                     mySingleton.shareInstance.dataSourceImgsSingleton = self?.familyImgsSource ?? []
+                    
+                    self?.saveImageToDocument()
                 }
             }
             
@@ -254,19 +291,21 @@ extension Num6ViewController: UICollectionViewDelegate, UICollectionViewDataSour
                 
                 if self.view.viewWithTag(999) != nil
                 {
-                    UIView.animate(withDuration: 0.5, animations: {
-                        self.alertView.frame = CGRect(x: centerX1, y: centerY1, width: 0, height:0)
-                    }, completion: { (_) in
-                        self.alertView.superview?.removeFromSuperview()
+                    UIView.animate(withDuration: 0.5, animations: { [weak self] in
+                        self?.alertView.frame = CGRect(x: centerX1, y: centerY1, width: 0, height:0)
+                        }, completion: { (_) in
+                            self.alertView.superview?.removeFromSuperview()
                     })
                 }
                 else
                 {
-            
-                    UIView.animate(withDuration: 0.5, animations: {
-                        self.alertView.frame = CGRect(x: centerX1, y: centerY1, width: 250, height: 200)
-                        self.alertView.isHidden = false
-                        self.view.addSubViewWithCover(self.alertView, blur: true)
+                    
+                    UIView.animate(withDuration: 0.5, animations: { [weak self] in
+                        self?.alertView.frame = CGRect(x: centerX1, y: centerY1, width: 250, height: 200)
+                        self?.alertView.isHidden = false
+                        if let alertView = self?.alertView {
+                            self?.view.addSubViewWithCover(alertView, blur: true)
+                        }
                     })
                     
                     //拍照获取
@@ -324,6 +363,12 @@ extension Num6ViewController: UIImagePickerControllerDelegate, UINavigationContr
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
+        UIView.animate(withDuration: 0.3, animations: {
+            picker.view.frame.origin.y = UIScreen.main.bounds.height
+        } ,completion: { _ in
+            picker.view.removeFromSuperview()
+        })
+        
         var selectedImage:UIImage? = info[UIImagePickerController.InfoKey.editedImage] as? UIImage
         if (selectedImage == nil ) {
             selectedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
@@ -332,39 +377,48 @@ extension Num6ViewController: UIImagePickerControllerDelegate, UINavigationContr
         if selectedImage != nil {
             let sources = ImageSource.init(img: selectedImage!, title: "")
             familyImgsSource.append(sources)
-            mySingleton.shareInstance.dataSourceImgsSingleton = familyImgsSource
             
-//            //将选择的图片保存到Document目录下
-//            let fileManager = FileManager.default
-//            let rootPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first! as NSString
-//            let filePath = "\(rootPath)/pickedImage.jpg"
-//            let imageData = NSUIImageJPEGRepresentation(sources.img, 1.0)
-//            fileManager.createFile(atPath: filePath, contents: imageData, attributes: nil)
-//
-//            //上传图片的路径到数据库中
-//            if fileManager.fileExists(atPath: filePath) {
-////                let imageUrl = NSURL(fileURLWithPath: filePath)
-////                Utility.saveFamilyImagesUrl(imagePath: filePath)
-//            }
-//
+            saveImageToDocument()
+        }
+    }
+        
+        //这时HelpVC是添加到window上的，通过动画模拟出来的present效果，currentVC并不是HelpVC,而是helpVC前面的控制器present出来的picker，这时候picker会在self的下面,索性将imagePickerController也加到window上面
+        func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+            
+            UIView.animate(withDuration: 0.3, animations: {
+                picker.view.frame.origin.y = UIScreen.main.bounds.height
+            } ,completion: { _ in
+                picker.view.removeFromSuperview()
+            })
+        }
+
+    //保存图片到Document中
+    func saveImageToDocument() {
+        //UserDefaut存储图片个数
+        UserDefaults.standard.set(familyImgsSource.count, forKey: "imageCount")
+        UserDefaults.standard.synchronize()
+        
+        //将选择的图片保存到Document目录下
+        let imageCount = UserDefaults.standard.integer(forKey: "imageCount")
+        var filePath = ""
+        
+        DispatchQueue.global().async {
+            for i in self.familyImgsSource {
+                
+                let fileManager = FileManager.default
+                let rootPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first! as NSString
+                
+                for c in 0..<imageCount {
+                    filePath = "\(rootPath)/pickedImage\(c).jpg"
+                }
+                
+                let imageData = NSUIImageJPEGRepresentation(i.img, 1.0)
+                fileManager.createFile(atPath: filePath, contents: imageData, attributes: nil)
+            }
         }
         
-        UIView.animate(withDuration: 0.3, animations: {
-            picker.view.frame.origin.y = UIScreen.main.bounds.height
-        } ,completion: { _ in
-            picker.view.removeFromSuperview()
-        })
     }
-    
-    //这时HelpVC是添加到window上的，通过动画模拟出来的present效果，currentVC并不是HelpVC,而是helpVC前面的控制器present出来的picker，这时候picker会在self的下面,索性将imagePickerController也加到window上面
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        
-        UIView.animate(withDuration: 0.3, animations: {
-            picker.view.frame.origin.y = UIScreen.main.bounds.height
-        } ,completion: { _ in
-            picker.view.removeFromSuperview()
-        })
-    }
+
 }
 
 

@@ -22,11 +22,9 @@ class DatabaseOption: NSObject {
         let documentsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first! as NSString
         let databasePath = documentsPath.appendingPathComponent(liveDBFileName)
         print(databasePath)
-        DBQueue = try! DatabaseQueue(path: databasePath)
-        DBQueue.setupMemoryManagement(in: UIApplication.shared)
         
+        DBQueue = try! DatabaseQueue(path: databasePath)
         DBPool = try! DatabasePool(path: databasePath)
-        DBPool.setupMemoryManagement(in: UIApplication.shared)
         updateColumn()
     }
     

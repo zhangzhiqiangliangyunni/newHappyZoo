@@ -140,6 +140,7 @@ class Num3ViewController: UIViewController {
              self.closeNum3VCBlock?()
          }, completion: { _ in
              self.view.removeFromSuperview()
+            (UIApplication.shared.delegate as? AppDelegate)?.num3VC = nil
          })
      }
 }

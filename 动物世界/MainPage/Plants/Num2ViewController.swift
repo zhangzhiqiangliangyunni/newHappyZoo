@@ -139,6 +139,7 @@ class Num2ViewController: UIViewController {
              self.closeNum2VCBlock?()
          }, completion: { _ in
              self.view.removeFromSuperview()
+            (UIApplication.shared.delegate as? AppDelegate)?.num2VC = nil
          })
      }
     

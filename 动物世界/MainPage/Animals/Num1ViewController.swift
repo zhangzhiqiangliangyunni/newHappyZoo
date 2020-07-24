@@ -21,9 +21,10 @@ class Num1ViewController: UIViewController {
     @IBOutlet weak var bottomingActivateView: UIView!
     
     var closeNum1VCBlock: (() -> Void)?
-    func closeNum1(_ block: @escaping () -> Void) {
-        closeNum1VCBlock = block
-    }
+   
+    deinit {
+           print("我移除了  移除了  移除了----------------Num1ViewController")
+       }
    
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -137,9 +138,10 @@ class Num1ViewController: UIViewController {
     @IBAction func backAction(_ sender: Any) {
     
         UIView.animate(withDuration: 0.5, animations: {
-            self.closeNum1VCBlock?()
+            self.view.frame.origin.x = UIScreen.main.bounds.width
         }, completion: { _ in
             self.view.removeFromSuperview()
+            (UIApplication.shared.delegate as? AppDelegate)?.num1VC = nil
         })
     }
 }

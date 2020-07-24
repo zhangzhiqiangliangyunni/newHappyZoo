@@ -141,6 +141,7 @@ class Num4ViewController: UIViewController {
              self.closeNum4VCBlock?()
          }, completion: { _ in
              self.view.removeFromSuperview()
+            (UIApplication.shared.delegate as? AppDelegate)?.num4VC = nil
          })
      }
 }
