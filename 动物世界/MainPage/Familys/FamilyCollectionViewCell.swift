@@ -77,6 +77,8 @@ class FamilyCollectionViewCell: UICollectionViewCell {
             
             if let text = self.EditTextField.originText?.trim(), hasElement(text) {
                 self.getInputTextBlock?(text, self.cellIndex)
+            }else{
+                self.getInputTextBlock?("", self.cellIndex)
             }
             
             self.endEditTextFieldBlock?()

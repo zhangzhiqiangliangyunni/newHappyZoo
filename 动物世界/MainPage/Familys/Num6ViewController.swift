@@ -37,9 +37,6 @@ class Num6ViewController: UIViewController {
     var collectionOldY: CGFloat = 0
     
     var closeNum6VCBlock: (() -> Void)?
-    func closeNum6(_ block: @escaping () -> Void) {
-        closeNum6VCBlock = block
-    }
     
     var familyImgsSource:[ImageSource] = [] {
         didSet{
@@ -101,11 +98,14 @@ class Num6ViewController: UIViewController {
                 
                 let filePath = "\(rootPath)/pickedImage\(i).jpg"
                 
+                //读取UserDefault存储的对应图片的文本
+                let title = UserDefaults.standard.string(forKey: "\(i)")
+                
                 if fileManager.fileExists(atPath: filePath) {
                     if let imageData = fileManager.contents(atPath: filePath) {
                         //data转String
                         if let imageImage = UIImage.init(data: imageData) {
-                            newImageSource.append(.init(img: imageImage, title: "张张"))
+                            newImageSource.append(.init(img: imageImage, title: title ?? ""))
                         }
                     }
                 }
@@ -195,18 +195,19 @@ extension Num6ViewController: UICollectionViewDelegate, UICollectionViewDataSour
             familyCell.clearBtn.isHidden = true
             familyCell.cellIndex = indexPath.row
             familyCell.setupContent(displayImage: familyImgsSource[indexPath.item].img, familyText: familyImgsSource[indexPath.item].title)
-            
+
             familyCell.getInputText { [weak self] (str, inx)  in
                 guard let `self` = self else {return}
                 
                 if inx == indexPath.row{
                     self.familyImgsSource[indexPath.row].title = str ?? ""
+                    
+                    //存起来图片对应下的文本
+                    UserDefaults.standard.setValue(str, forKey: "\(inx)")
+                    UserDefaults.standard.synchronize()
                 }
                 collectionView.reloadData()
-                mySingleton.shareInstance.dataSourceImgsSingleton = self.familyImgsSource
                 
-                UserDefaults.standard.set(mySingleton.shareInstance.dataSourceImgsSingleton.count, forKey: "imageCount")
-                UserDefaults.standard.synchronize()
             }
             
             //familyCell中的EditItemView开始编辑的时候
@@ -250,7 +251,6 @@ extension Num6ViewController: UICollectionViewDelegate, UICollectionViewDataSour
                 if let inx = inx {
                     self?.familyImgsSource.remove(at:inx)
                     collectionView.deleteItems(at: [IndexPath(row: inx, section: 0)])
-                    mySingleton.shareInstance.dataSourceImgsSingleton = self?.familyImgsSource ?? []
                     
                     self?.saveImageToDocument()
                 }
@@ -412,7 +412,7 @@ extension Num6ViewController: UIImagePickerControllerDelegate, UINavigationContr
                     filePath = "\(rootPath)/pickedImage\(c).jpg"
                 }
                 
-                let imageData = NSUIImageJPEGRepresentation(i.img, 1.0)
+                let imageData = NSUIImageJPEGRepresentation(i.img, 0.3)
                 fileManager.createFile(atPath: filePath, contents: imageData, attributes: nil)
             }
         }
