@@ -83,8 +83,12 @@ class Num6ViewController: UIViewController {
         collectionView.register(UINib(nibName: "addNewItemCell" ,bundle: nil), forCellWithReuseIdentifier: "addNewItemCell")
         collectionOldY = self.collectionView.frame.origin.y
         
-        getImagesFromDocument()
-        
+        if mySingleton.shareInstance.dataSourceImgsSingleton.count > 0 {
+            familyImgsSource = mySingleton.shareInstance.dataSourceImgsSingleton
+        }else{
+            getImagesFromDocument()
+        }
+    
     }
     
     func getImagesFromDocument() {
@@ -93,8 +97,8 @@ class Num6ViewController: UIViewController {
             var newImageSource: [ImageSource] = []
             let fileManager = FileManager.default
             let rootPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first! as NSString
-            
-            for i in 0..<UserDefaults.standard.integer(forKey: "imageCount"){
+    
+            for i in 0..<UserDefaults.standard.integer(forKey: "imageCount") {
                 
                 let filePath = "\(rootPath)/pickedImage\(i).jpg"
                 
@@ -206,8 +210,10 @@ extension Num6ViewController: UICollectionViewDelegate, UICollectionViewDataSour
                     UserDefaults.standard.setValue(str, forKey: "\(inx)")
                     UserDefaults.standard.synchronize()
                 }
-                collectionView.reloadData()
                 
+                //再次进来Num6VC读取单例中的title
+                mySingleton.shareInstance.dataSourceImgsSingleton = self.familyImgsSource
+                collectionView.reloadData()
             }
             
             //familyCell中的EditItemView开始编辑的时候
@@ -237,6 +243,7 @@ extension Num6ViewController: UICollectionViewDelegate, UICollectionViewDataSour
                 Sound.play(type: .wiggle)
                 
                 familyCell.clearBtn.isHidden = false
+                familyCell.clipsToBounds = true
                 self?.view.bringSubviewToFront(familyCell.clearBtn)
                 
                 if let anim = self?.getShakeAnimation() {
@@ -248,11 +255,26 @@ extension Num6ViewController: UICollectionViewDelegate, UICollectionViewDataSour
             }
             
             familyCell.delete = {  [weak self] (inx) in
+                guard let `self` = self else {return}
+                
                 if let inx = inx {
-                    self?.familyImgsSource.remove(at:inx)
+                    self.familyImgsSource.remove(at:inx)
+                    mySingleton.shareInstance.dataSourceImgsSingleton = self.familyImgsSource
                     collectionView.deleteItems(at: [IndexPath(row: inx, section: 0)])
+
+                    UserDefaults.standard.set(self.familyImgsSource.count, forKey: "imageCount")
+                    UserDefaults.standard.synchronize()
                     
-                    self?.saveImageToDocument()
+                    if UserDefaults.standard.integer(forKey: "imageCount") > 0 {
+                        let fileManager = FileManager.default
+                        let rootPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first! as NSString
+                        let filePath = "\(rootPath)/pickedImage\(inx).jpg"
+                        
+                        if fileManager.fileExists(atPath: filePath) {
+                            try? fileManager.removeItem(atPath: filePath)
+                            UserDefaults.standard.removeObject(forKey: "\(inx)")
+                        }
+                    }
                 }
             }
             
@@ -263,13 +285,7 @@ extension Num6ViewController: UICollectionViewDelegate, UICollectionViewDataSour
                     self?.stopShakeCell()
                 }else{
                     
-                    let syntesizer = AVSpeechSynthesizer()
-                    var utterance = AVSpeechUtterance()
-                    
-                    let playString = "张志强"
-                    utterance = AVSpeechUtterance(string: playString)
-                    utterance.rate = 0.1
-                    syntesizer.speak(utterance)
+                   print("涨之前那个猪猪猪猪猪猪组汉族猪猪猪猪猪猪组织")
                 }
                 
             }
@@ -377,7 +393,8 @@ extension Num6ViewController: UIImagePickerControllerDelegate, UINavigationContr
         if selectedImage != nil {
             let sources = ImageSource.init(img: selectedImage!, title: "")
             familyImgsSource.append(sources)
-            
+            mySingleton.shareInstance.dataSourceImgsSingleton = self.familyImgsSource
+
             saveImageToDocument()
         }
     }

@@ -59,7 +59,7 @@ class FamilyCollectionViewCell: UICollectionViewCell {
         EditTextField.attributePlaceHolder = str
         
         EditTextField.keyboardType = CustomerKeyboardType.systemType(type: .default, length: 50)
-        EditTextField.font = UIFont.boldSystemFont(ofSize: 18)
+        EditTextField.font = UIFont.boldSystemFont(ofSize: 17)
         EditTextField.hasSelectedShadow = true
         EditTextField.inputText.autocapitalizationType = .sentences
         EditTextField.textColor = UIColor.black

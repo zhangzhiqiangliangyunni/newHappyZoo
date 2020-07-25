@@ -22,10 +22,6 @@ class Num1ViewController: UIViewController {
     
     var closeNum1VCBlock: (() -> Void)?
    
-    deinit {
-           print("我移除了  移除了  移除了----------------Num1ViewController")
-       }
-   
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
