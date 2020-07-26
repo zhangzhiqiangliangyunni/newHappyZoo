@@ -124,18 +124,13 @@ class AnimalsViewController: UIViewController {
 
         switch type {
         case 1:
-            print("1111111111111111111天上飞的")
-            print("\(j)")
-            startTranslattion("中华田园犬")
+            startTranslattion(images[j])
         case 2:
-            print("2222222222222222222地上跑的")
-            print("\(j)")
+            startTranslattion(images[j])
         case 3:
-            print("3333333333333333333土里爬的")
-            print("\(j)")
+            startTranslattion(images[j])
         case 4:
-            print("4444444444444444444水里游的")
-            print("\(j)")
+            startTranslattion(images[j])
         default:
             ()
         }
