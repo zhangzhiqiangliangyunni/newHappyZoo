@@ -23,9 +23,6 @@ class AnimalsViewController: UIViewController {
     var swipeRight: UISwipeGestureRecognizer?
     var readView: ReadAnimalsNameView!
     
-    let syntesizer = AVSpeechSynthesizer()
-    var utterance = AVSpeechUtterance()
-    
     var type : Int = 0
     var images:[String] {
         if type == 1{
@@ -144,21 +141,6 @@ class AnimalsViewController: UIViewController {
         }
     }
     
-    func startTranslattion(_ text: String) {
-        //1. 创建需要合成的声音类型
-        let voice = AVSpeechSynthesisVoice(language: "zh-CN")
-        
-        //2. 创建合成的语音类
-        let utterance = AVSpeechUtterance(string: text)
-//        utterance.rate = AVSpeechUtteranceDefaultSpeechRate
-        utterance.rate = 0.4
-        utterance.voice = voice
-        utterance.volume = 1
-        utterance.postUtteranceDelay = 0.2
-        utterance.pitchMultiplier = 1
-        //开始播放
-        syntesizer.speak(utterance)
-    }
     
     @objc func clickExit(){
         Sound.play(type: .swipe)
@@ -324,22 +306,5 @@ class AnimalsViewController: UIViewController {
 
 }
 
-extension AnimalsViewController {
-    //开始转换
-//    func startTranslattion() {
-//        //1. 创建需要合成的声音类型
-//        let voice = AVSpeechSynthesisVoice(language: "zh-CN")
-//
-//        //2. 创建合成的语音类
-//        let utterance = AVSpeechUtterance(string: "老虎")
-//        utterance.rate = AVSpeechUtteranceDefaultSpeechRate
-//        utterance.voice = voice
-//        utterance.volume = 1
-//        utterance.postUtteranceDelay = 0.1
-//        utterance.pitchMultiplier = 1
-//        //开始播放
-//        syntesizer.speak(utterance)
-//    }
-    
-}
+extension AnimalsViewController: PlayVoiceSyntesizerable {}
 
