@@ -234,6 +234,7 @@
 		5BD2F9642470E438000AC895 /* UIControl+Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD2F9632470E438000AC895 /* UIControl+Action.swift */; };
 		5BD2F9E324711EC0000AC895 /* LaunchImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BD2F9E224711EC0000AC895 /* LaunchImage.png */; };
 		5BD2F9E5247127C5000AC895 /* UIView+Frame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD2F9E4247127C5000AC895 /* UIView+Frame.swift */; };
+		5BE3C39524CD768C00CA67EC /* PlayVoiceSyntesizerable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE3C39424CD768B00CA67EC /* PlayVoiceSyntesizerable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -502,6 +503,7 @@
 		5BD2F9632470E438000AC895 /* UIControl+Action.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIControl+Action.swift"; sourceTree = "<group>"; };
 		5BD2F9E224711EC0000AC895 /* LaunchImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LaunchImage.png; sourceTree = "<group>"; };
 		5BD2F9E4247127C5000AC895 /* UIView+Frame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Frame.swift"; sourceTree = "<group>"; };
+		5BE3C39424CD768B00CA67EC /* PlayVoiceSyntesizerable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayVoiceSyntesizerable.swift; sourceTree = "<group>"; };
 		A8B68E253F1D49A6548ED14C /* Pods-动物世界.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-动物世界.release.xcconfig"; path = "Target Support Files/Pods-动物世界/Pods-动物世界.release.xcconfig"; sourceTree = "<group>"; };
 		F8B1E3D84308916DD212E025 /* Pods-动物世界.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-动物世界.debug.xcconfig"; path = "Target Support Files/Pods-动物世界/Pods-动物世界.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1083,6 +1085,7 @@
 				5B1659CD24B16FED0085676C /* EditTextView.swift */,
 				5B6B9F7F24B8575900A9B85C /* DatabaseOption.swift */,
 				5B6B9F8424B85FD800A9B85C /* Utility.swift */,
+				5BE3C39424CD768B00CA67EC /* PlayVoiceSyntesizerable.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1421,6 +1424,7 @@
 				5BD2F80F2470D14C000AC895 /* IHighlighter.swift in Sources */,
 				5BD2F8612470D14C000AC895 /* IScatterChartDataSet.swift in Sources */,
 				5BD2F8692470D14C000AC895 /* IBubbleChartDataSet.swift in Sources */,
+				5BE3C39524CD768C00CA67EC /* PlayVoiceSyntesizerable.swift in Sources */,
 				2485CDB82475331A00E72165 /* Num4ViewController.swift in Sources */,
 				5BD2F84C2470D14C000AC895 /* RadarChartData.swift in Sources */,
 				5BD2F7EF2470D14C000AC895 /* ChartDataRendererBase.swift in Sources */,
