@@ -30,6 +30,7 @@ class Num6ViewController: UIViewController {
     @IBOutlet weak var backBtn: UIButton!
     @IBOutlet weak var themeTitle: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
+    var fullDisplayBtn: UIButton?
     
     fileprivate var isShaking: Bool = false
     var index: Int = 0
@@ -285,11 +286,25 @@ extension Num6ViewController: UICollectionViewDelegate, UICollectionViewDataSour
                     self?.stopShakeCell()
                 }else{
                     
-                   print("涨之前那个猪猪猪猪猪猪组汉族猪猪猪猪猪猪组织")
+                    print("涨之前那个猪猪猪猪猪猪组汉族猪猪猪猪猪猪组织")
+                    //创建显示图片的fullScreen按钮
+                    Sound.play(type: .click)
+                    self?.startTranslattion(self?.familyImgsSource[inx].title ?? "")
+                    
+                    guard let `self` = self else { return }
+                    self.fullDisplayBtn = UIButton()
+                    self.fullDisplayBtn?.frame = CGRect(x: 0, y: 0, width: self.view.bounds.width, height: self.view.bounds.height)
+                    self.fullDisplayBtn?.addTarget(self, action: #selector(self.exitDisplayBtn), for: .touchUpInside)
+                    
+                    if let fullDisplayBtn = self.fullDisplayBtn {
+                        self.view.addSubview(fullDisplayBtn)
+                        fullDisplayBtn.setBackgroundImage(self.familyImgsSource[inx].img, for: .normal)
+                    }
+                    
                 }
                 
             }
-            
+
             return familyCell
             
         } else { //只存在添加cell
@@ -341,6 +356,10 @@ extension Num6ViewController: UICollectionViewDelegate, UICollectionViewDataSour
             return addNewCell
         }
         
+    }
+    
+    @objc func exitDisplayBtn() {
+        self.fullDisplayBtn?.removeFromSuperview()
     }
     
     @objc func stopShakeCell() {
@@ -437,5 +456,7 @@ extension Num6ViewController: UIImagePickerControllerDelegate, UINavigationContr
     }
 
 }
+
+extension Num6ViewController: PlayVoiceSyntesizerable {}
 
 
