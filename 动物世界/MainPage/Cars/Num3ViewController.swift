@@ -64,6 +64,7 @@ class Num3ViewController: UIViewController {
                         
                         let vc = CarsViewController(nibName: nil, bundle: nil)
                         vc.modalPresentationStyle = .fullScreen
+                        vc.type = 1
                         self.present(vc, animated: true, completion: nil)
         }
         )
@@ -85,6 +86,7 @@ class Num3ViewController: UIViewController {
                         
                         let vc = CarsViewController(nibName: nil, bundle: nil)
                         vc.modalPresentationStyle = .fullScreen
+                        vc.type = 2
                         self.present(vc, animated: true, completion: nil)
                         
         }
@@ -106,6 +108,7 @@ class Num3ViewController: UIViewController {
                        completion: { Void in()
                         let vc = CarsViewController(nibName: nil, bundle: nil)
                         vc.modalPresentationStyle = .fullScreen
+                        vc.type = 3
                         self.present(vc, animated: true, completion: nil)
         }
         )
@@ -127,6 +130,7 @@ class Num3ViewController: UIViewController {
                         
                         let vc = CarsViewController(nibName: nil, bundle: nil)
                         vc.modalPresentationStyle = .fullScreen
+                        vc.type = 4
                         self.present(vc, animated: true, completion: nil)
                         
         }

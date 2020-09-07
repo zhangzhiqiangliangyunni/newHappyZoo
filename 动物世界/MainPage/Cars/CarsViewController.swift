@@ -21,7 +21,20 @@ class CarsViewController: UIViewController {
     var swipeRight: UISwipeGestureRecognizer?
     var readView: ReadAnimalsNameView!
     
-    var images:[String] = ["房子","家人","绵羊","汽车主页","山水主页","小老鼠","动物树"]
+    //type:(1,2,3,4) 国，工，外，公
+    var type : Int = 0
+    var images:[String] {
+        if type == 1{
+            return ["奇瑞QQ","瑞虎3X","奇瑞E3","艾瑞泽5","奇瑞A3","奇瑞小蚂蚁","瑞虎5X","星途","瑞虎7","瑞虎8","凯翼X5","捷途X8零","飞13","飞14","飞15","飞16","飞17","飞18","飞19","飞20","飞21","飞22","飞23","飞24","飞25"]
+        }else if type == 2{
+            return ["地1","地2","地3","地4","地5","地6","地7","地8","地9","地10","地11","地12","地13","地14","地15","地16","地17","地18","地19","地20","地21","地22","地23","地24","地25","地26","地27","地28","地29","地30","地31","地32","地33","地34","地35","地36","地37","地38"]
+        }else if type == 3{
+            return ["土1","土2","土3","土4","土5","土5",]
+        }else if type == 4{
+            return ["水1","水2","水3","水4","水5","水6","水7","水8","水9","水10","水11","水12","水13","水14","水15","水16","水17","水18","水19","水20","水21","水22","水23","水24","水25","水26","水27","水28","水29","水30","水31","水32","水33","水34"]
+        }
+        return []
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -86,6 +99,10 @@ class CarsViewController: UIViewController {
         readView = ReadAnimalsNameView(frame: CGRect(x: 40, y: 50, width: 60, height: 60))
         imageView.addSubview(readView)
         
+        let tapReadView = UITapGestureRecognizer()
+        tapReadView.addTarget(self, action: #selector(tapReadViewAction))
+        readView.addGestureRecognizer(tapReadView)
+        
         //创建一个左右滑动的手势
         swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(clickNext))
         swipeLeft?.direction = UISwipeGestureRecognizer.Direction.left
@@ -99,6 +116,25 @@ class CarsViewController: UIViewController {
         
         childThreadCreatOtherSubViews()
     }
+    
+    //点击readView事件
+    @objc func tapReadViewAction(){
+        Sound.play(type: .click)
+
+        switch type {
+        case 1:
+            startTranslattion(images[j])
+        case 2:
+            startTranslattion(images[j])
+        case 3:
+            startTranslattion(images[j])
+        case 4:
+            startTranslattion(images[j])
+        default:
+            ()
+        }
+    }
+
     
     @objc func clickExit(){
         Sound.play(type: .swipe)
@@ -120,10 +156,11 @@ class CarsViewController: UIViewController {
 
         if self.images.count < j + 1 {
             j = self.images.count - 1
-            scrollView.setContentOffset(CGPoint(x: frame.size.width * CGFloat(j), y: 0), animated: true)
         }else{
-            scrollView.setContentOffset(CGPoint(x: frame.size.width * CGFloat(j), y: 0), animated: true)
+            tempValue = j
         }
+        
+        scrollView.setContentOffset(CGPoint(x: frame.size.width * CGFloat(tempValue), y: 0), animated: true)
         
     }
     
@@ -198,6 +235,10 @@ class CarsViewController: UIViewController {
                     self.readView = ReadAnimalsNameView(frame: CGRect(x: 40, y: 50, width: 60, height: 60))
                     self.imageView.addSubview(self.readView)
                     
+                    let tapReadView = UITapGestureRecognizer()
+                    tapReadView.addTarget(self, action: #selector(self.tapReadViewAction))
+                    self.readView.addGestureRecognizer(tapReadView)
+                    
                     if self.index == self.images.count - 1 {//bgView是就一个Btn(Got it)为一组的
                         
                         self.bgView.snp.makeConstraints { (make) in
@@ -257,5 +298,6 @@ class CarsViewController: UIViewController {
         }
     }
 
-
 }
+
+extension CarsViewController: PlayVoiceSyntesizerable {}

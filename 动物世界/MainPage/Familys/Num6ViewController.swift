@@ -66,11 +66,19 @@ class Num6ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        
+        hideKeyboardWhenTappedAround()
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        
+    //点击view任意处退出键盘
+    func hideKeyboardWhenTappedAround() {
+        let tap = UITapGestureRecognizer()
+        tap.addTarget(self, action: #selector(dismissKeyboard1))
+        self.view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard1() {
+       self.view.endEditing(true)
     }
     
     func setupUI(){
@@ -255,7 +263,7 @@ extension Num6ViewController: UICollectionViewDelegate, UICollectionViewDataSour
                 self?.isShaking = true
             }
             
-            familyCell.delete = {  [weak self] (inx) in
+            familyCell.delete = { [weak self] (inx) in
                 guard let `self` = self else {return}
                 
                 if let inx = inx {
@@ -360,6 +368,15 @@ extension Num6ViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     @objc func exitDisplayBtn() {
         self.fullDisplayBtn?.removeFromSuperview()
+        for i in self.view.subviews{
+            i.isUserInteractionEnabled = false
+        }
+        
+        delay(0.3) {
+            for i in self.view.subviews{
+                i.isUserInteractionEnabled = true
+            }
+        }
     }
     
     @objc func stopShakeCell() {

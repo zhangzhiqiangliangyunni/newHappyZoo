@@ -1670,13 +1670,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 35E7YASSBX;
+				DEVELOPMENT_TEAM = RVKS82MYHW;
 				INFOPLIST_FILE = "动物世界/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "myLove.----";
+				PRODUCT_BUNDLE_IDENTIFIER = myLove.tt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "动物世界/Header-bridge.h";
 				SWIFT_VERSION = 5.0;
@@ -1690,13 +1690,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 35E7YASSBX;
+				DEVELOPMENT_TEAM = RVKS82MYHW;
 				INFOPLIST_FILE = "动物世界/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "myLove.----";
+				PRODUCT_BUNDLE_IDENTIFIER = myLove.tt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "动物世界/Header-bridge.h";
 				SWIFT_VERSION = 5.0;
