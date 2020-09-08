@@ -122,9 +122,13 @@ class PlantsViewController: UIViewController {
     @objc func clickGoBack(){
         Sound.play(type: .recapShrink)
         let frame = scrollView.frame
-        guard j != 0 else { return }
-        j -= 1
-        scrollView.setContentOffset(CGPoint(x: frame.size.width * CGFloat(j), y: 0), animated: true)
+        
+        if j != 0{
+            j -= 1
+            scrollView.setContentOffset(CGPoint(x: frame.size.width * CGFloat(j), y: 0), animated: true)
+        }else{
+            self.dismiss(animated: true, completion: nil)
+        }
     }
 
     @objc func clickNext(){
